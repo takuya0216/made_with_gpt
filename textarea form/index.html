@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Textarea Form</title>
+    <style>
+      textarea {
+        overflow: hidden;
+        width: 500px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      textarea {
+        overflow: hidden;
+        width: 500px;
+        align-self: flex-end;
+    }
+    </style>
+    <script>
+      window.onload = function() {
+        const message = document.getElementById('message');
+        const form = document.querySelector('form');
+
+        message.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+        form.style.height = 'auto';
+        form.style.height = (form.scrollHeight) + 'px';
+        });
+  };
+    </script>
+  </head>
+  <body>
+    <form>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="1"></textarea>
+    </form>
+  </body>
+</html>

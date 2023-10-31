@@ -1,0 +1,50 @@
+.arrow {
+  position: relative;
+  display: inline-block;
+  padding: 0 20px; /* 右側の余白を増やして円の直径を確保 */
+  color: #fff; /* 矢印の色を白に変更 */
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 15px;
+}
+.arrow::before,
+.arrow::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  vertical-align: middle;
+}
+
+.sample1-1::before {
+  right: 14px; /* 矢印を右寄せするために位置を調整 */
+  width: 5px;
+  height: 1px;
+  background: #ff69b4; /* 矢印の色をピンク(#ff69b4)に変更 */
+}
+.sample1-1::after {
+  right: 10px; /* 矢印を右寄せするために位置を調整 */
+  width: 4px;
+  height: 4px;
+  border-top: 1px solid #ff69b4; /* 矢印の色をピンク(#ff69b4)に変更 */
+  border-right: 1px solid #ff69b4; /* 矢印の色をピンク(#ff69b4)に変更 */
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* 黒色の円のスタイルを追加 */
+.arrow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 16px; /* 円の直径 */
+  height: 16px; /* 円の直径 */
+  background-color: #000; /* 円の背景色を黒色(#000)に変更 */
+  border-radius: 50%; /* 円の形状を円形に設定 */
+  z-index: -1; /* 矢印より背面に配置 */
+}

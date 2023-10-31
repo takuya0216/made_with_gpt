@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Style for the main content and button */
+    .main-content {
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Style for the overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+
+    /* Style for the modal window */
+    .modal {
+      position: absolute;
+      max-width: 520px;
+      max-height: 640px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      overflow: auto;
+    }
+
+    /* Style for the modal buttons */
+    .modal button {
+      float: right;
+      margin-left: 10px;
+    }
+
+    /* Style for the form inside the modal window */
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Style for the checkboxes */
+    .modal input[type="checkbox"] {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <button id="modal-button">Open Modal</button>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="overlay" id="modal-overlay">
+    <!-- Modal Window -->
+    <div class="modal" id="modal-window">
+      <form>
+        <input type="checkbox" name="checkbox1">Option 1<br>
+        <input type="checkbox" name="checkbox2">Option 2<br>
+        <input type="checkbox" name="checkbox3">Option 3<br>
+        <button id="cancel-button">Cancel</button>
+        <button id="send-button">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Show the modal overlay when the button is clicked
+    $("#modal-button").click(function() {
+      $("#modal-overlay").show();
+    });
+
+    // Hide the modal overlay when either button is clicked
+    $("#cancel-button, #send-button").click(function() {
+      $("#modal-overlay").hide();
+    });
+  </script>
+</body>
+</html>
