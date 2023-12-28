@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .floating-character {
+      position: absolute;
+      animation: floatAndSwayAnimation 6s infinite alternate ease-in-out;
+    }
+
+    .floating-character:hover {
+      animation: shakeAnimation 0.3s ease-in-out; /* マウスホバー時の別のアニメーション */
+    }
+
+    @keyframes floatAndSwayAnimation {
+      0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-15px) translateX(10px) rotate(5deg);
+      }
+      50% {
+        transform: translateY(-30px) translateX(-10px) rotate(0deg);
+      }
+      75% {
+        transform: translateY(-15px) translateX(10px) rotate(-5deg);
+      }
+    }
+
+    @keyframes shakeAnimation {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(5deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      75% {
+        transform: rotate(-5deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-character">
+    <!-- ここにキャラクター画像を挿入 -->
+    <img src="./img.png" alt="Floating Character">
+  </div>
+</body>
+</html>

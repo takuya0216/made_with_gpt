@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .floating-character {
+      position: absolute;
+      transition: transform 0.2s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-character" id="character">
+    <img src="./img.png" alt="Floating Character">
+  </div>
+
+  <script>
+    const character = document.getElementById('character');
+    let angle = 0;
+    let radiusX = 30;
+    let radiusY = 20;
+    let radiusY2 = 10;
+    let angle2 = 0;
+    let angle3 = 0;
+    let rotationAngle = 0;
+    let rotationDirection = 1;
+
+    character.addEventListener('mouseenter', () => {
+      shakeAnimation();
+    });
+
+    function shakeAnimation() {
+      const shakeIntensity = 150;
+      const initialTransform = character.style.transform;
+
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const shakeX = Math.cos(angle) * shakeIntensity; // X軸方向を円状に動かす
+          const shakeY = Math.sin(angle) * shakeIntensity; // Y軸方向を円状に動かす
+          character.style.transform = `translate(${shakeX}px, ${shakeY}px) rotate(${rotationAngle}deg)`;
+        }, i * 150);
+      }
+
+      setTimeout(() => {
+        character.style.transform = initialTransform;
+      }, 3 * 150);
+    }
+
+    function animate() {
+      const x = radiusX * Math.sin(angle);
+      const y = radiusY * Math.cos(angle) + radiusY2 * Math.sin(angle2);
+
+      character.style.transform = `translate(${x}px, ${y}px) rotate(${rotationAngle}deg)`;
+      
+      angle += 0.02;
+      angle2 += 0.03;
+      angle3 += 0.05;
+
+      rotationAngle += 0.03 * rotationDirection;
+
+      if (angle3 % (Math.PI * 3) < 0.05) {
+        rotationDirection *= -1;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

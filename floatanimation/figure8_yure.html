@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .floating-character {
+      position: absolute;
+      transition: transform 0.2s ease-out;
+    }
+
+    .floating-character:hover {
+      animation: hoverAnimation 0.5s forwards;
+    }
+
+    @keyframes hoverAnimation {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(5deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      75% {
+        transform: rotate(-5deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-character" id="character">
+    <img src="./img.png" alt="Floating Character">
+  </div>
+
+  <script>
+    const character = document.getElementById('character');
+    let angle = 0;
+    let radiusX = 30;
+    let radiusY = 20;
+    let radiusY2 = 10;
+    let angle2 = 0;
+    let angle3 = 0;
+    let rotationAngle = 0;
+    let rotationDirection = 1;
+
+    function animate() {
+      const x = radiusX * Math.sin(angle);
+      const y = radiusY * Math.cos(angle) + radiusY2 * Math.sin(angle2);
+
+      character.style.transform = `translate(${x}px, ${y}px) rotate(${rotationAngle}deg)`;
+      
+      angle += 0.02;
+      angle2 += 0.03;
+      angle3 += 0.05;
+
+      rotationAngle += 0.03 * rotationDirection;
+
+      if (angle3 % (Math.PI * 3) < 0.05) {
+        rotationDirection *= -1;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // マウスホバー時の挙動
+    character.addEventListener('mouseenter', () => {
+      character.style.animationPlayState = 'running';
+
+      // アニメーション終了後に元の位置に戻る
+      setTimeout(() => {
+        character.style.animationPlayState = 'paused';
+        character.style.transform = 'translate(0, 0) rotate(0deg)';
+      }, 2000); // 2000ミリ秒（2秒）後に戻る
+    });
+
+    animate();
+  </script>
+</body>
+</html>
